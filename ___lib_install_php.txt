@@ -1,0 +1,11 @@
+;can tai ve
+extension=php_mongodb.dll
+;mac dinh cua php co roi
+extension=php_intl.dll
+extension=php_gd.dll
+
+
+cài thêm thư viên : calendar trong aapanel
+
+
+composer config "platform.ext-mongo" "1.6.16" && composer require alcaeus/mongo-php-adapter

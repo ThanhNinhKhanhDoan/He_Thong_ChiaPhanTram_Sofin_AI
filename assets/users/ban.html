@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài Khoản Đã Bị Khóa</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #7209b7;
+            --red-color: #e63946;
+            --background-dark: #171923;
+            --background-light: #2a2f42;
+            --card-background: #1e2235;
+            --text-color: #f8f9fa;
+            --text-secondary: #c2c5d1;
+            --border-color: #ff5a5f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-dark);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: var(--red-color);
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .circle:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary-color);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        .circle:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            background: var(--primary-color);
+            bottom: 100px;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-50px) translateX(50px);
+            }
+            50% {
+                transform: translateY(20px) translateX(-30px);
+            }
+            75% {
+                transform: translateY(40px) translateX(25px);
+            }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 550px;
+            padding: 0;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+            background: rgba(30, 34, 53, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header {
+            background: var(--red-color);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .header-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+        
+        .header-title {
+            flex-grow: 1;
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .header p {
+            margin: 5px 0 0;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .account-info {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #414764;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            margin-right: 20px;
+            flex-shrink: 0;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .user-info {
+            flex-grow: 1;
+        }
+        
+        .user-info h2 {
+            font-size: 1.3rem;
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .user-info p {
+            margin: 5px 0 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .status-badge {
+            background: var(--red-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(230, 57, 70, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
+        }
+        
+        .divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px 0;
+        }
+        
+        .message-card {
+            border-radius: 12px;
+            border-left: 4px solid var(--red-color);
+            padding: 20px;
+            background: rgba(230, 57, 70, 0.1);
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .message-card h3 {
+            font-size: 1.1rem;
+            margin: 0 0 15px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .message-card p {
+            margin: 10px 0;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .reason-list {
+            list-style: none;
+            margin: 20px 0;
+            padding: 0;
+        }
+        
+        .reason-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .reason-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .reason-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--red-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .reason-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: white;
+        }
+        
+        .reason-text {
+            flex-grow: 1;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 8px;
+            border: none;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        
+        .timer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .timer strong {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        
+        .help-link {
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .help-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .help-link a:hover {
+            color: var(--text-color);
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                max-width: 100%;
+                border-radius: 0;
+                margin: 0;
+                height: 100vh;
+                overflow-y: auto;
+            }
+            
+            .header {
+                padding: 15px 20px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+            }
+        }
+        
+        /* Animation for warn icon */
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        .header-icon svg {
+            animation: rotate 2s ease-in-out infinite;
+        }
+        
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float-up 15s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+    
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="header-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"/>
+                </svg>
+            </div>
+            <div class="header-title">
+                <h1>Tài Khoản Đã Bị Khóa</h1>
+                <p>Vi phạm chính sách cộng đồng</p>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="account-info">
+                <div class="avatar" id="user-avatar">N</div>
+                <div class="user-info">
+                    <h2 id="user-name">Nguyễn Văn A</h2>
+                    <p id="user-email">nguyenvana@example.com</p>
+                    <div class="status-badge">Tài khoản bị khóa</div>
+                </div>
+            </div>
+            
+            <div class="message-card">
+                <h3>Thông Báo Khóa Tài Khoản</h3>
+                <p>Kính gửi <strong id="greeting-name">Nguyễn Văn A</strong>,</p>
+                <p>Chúng tôi rất tiếc phải thông báo rằng tài khoản của bạn đã bị tạm khóa do vi phạm các quy định và chính sách cộng đồng của chúng tôi. Sau khi xem xét kỹ lưỡng, chúng tôi đã xác định tài khoản của bạn đã tham gia vào các hoạt động không phù hợp.</p>
+                
+                <div class="divider"></div>
+                
+                <h3>Lý Do Khóa Tài Khoản</h3>
+                <ul class="reason-list">
+                    <li>
+                        <div class="reason-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                            </svg>
+                        </div>
+                        <div class="reason-text">Đăng tải hoặc chia sẻ nội dung vi phạm quy định</div>
+                    </li>
+                    <li>
+                        <div class="reason-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                            </svg>
+                        </div>
+                        <div class="reason-text">Sử dụng ngôn ngữ quấy rối hoặc gây thù ghét</div>
+                    </li>
+                    <li>
+                        <div class="reason-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                            </svg>
+                        </div>
+                        <div class="reason-text">Vi phạm điều khoản sử dụng dịch vụ nhiều lần</div>
+                    </li>
+                </ul>
+                
+                <div class="divider"></div>
+                
+                <p>Việc khóa tài khoản là quyết định không dễ dàng, nhưng chúng tôi buộc phải áp dụng các biện pháp nhằm bảo vệ cộng đồng người dùng. Nếu bạn tin rằng đây là sự hiểu lầm, vui lòng gửi yêu cầu xem xét lại quyết định của chúng tôi.</p>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-secondary">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
+                    </svg>
+                    Đọc Chính Sách
+                </button>
+                <button class="btn btn-primary">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
+                    </svg>
+                    Gửi Kháng Nghị
+                </button>
+            </div>
+            
+            <div class="timer">
+                Tài khoản của bạn sẽ được mở khóa sau <strong id="countdown">30 ngày 00:00:00</strong>
+            </div>
+            
+            <div class="help-link">
+                <a href="#">Liên hệ với bộ phận hỗ trợ</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hiệu ứng đếm ngược
+            const countdownEl = document.getElementById('countdown');
+            let days = 30;
+            let hours = 0;
+            let minutes = 0;
+            let seconds = 0;
+            
+            function updateCountdown() {
+                if (seconds > 0) {
+                    seconds--;
+                } else {
+                    seconds = 59;
+                    if (minutes > 0) {
+                        minutes--;
+                    } else {
+                        minutes = 59;
+                        if (hours > 0) {
+                            hours--;
+                        } else {
+                            hours = 23;
+                            if (days > 0) {
+                                days--;
+                            }
+                        }
+                    }
+                }
+                
+                countdownEl.textContent = `${days} ngày ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                
+                // Nếu đếm ngược kết thúc
+                if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+                    clearInterval(countdownInterval);
+                    countdownEl.textContent = "Tài khoản đã được mở khóa";
+                }
+            }
+            
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            
+            // Hiệu ứng chữ cái đầu cho avatar
+            const avatar = document.getElementById('user-avatar');
+            const userName = document.getElementById('user-name').textContent;
+            avatar.textContent = userName.charAt(0);
+            
+            // Hiệu ứng hạt nền
+            function createParticles() {
+                const particles = document.getElementById('particles');
+                const particleCount = 20;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Vị trí ngẫu nhiên
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    
+                    // Kích thước ngẫu nhiên
+                    const size = Math.random() * 4 + 2;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    
+                    // Tốc độ và độ trễ ngẫu nhiên
+                    const duration = Math.random() * 20 + 10;
+                    const delay = Math.random() * 10;
+                    particle.style.animation = `float-up ${duration}s linear ${delay}s infinite`;
+                    
+                    particles.appendChild(particle);
+                }
+                
+                // Thêm animation keyframes
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes float-up {
+                        0% {
+                            transform: translateY(100vh) translateX(0);
+                            opacity: 0;
+                        }
+                        10% {
+                            opacity: 0.6;
+                        }
+                        90% {
+                            opacity: 0.6;
+                        }
+                        100% {
+                            transform: translateY(-100vh) translateX(${Math.random() * 200 - 100}px);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            createParticles();
+            
+            // Hiệu ứng cho nút
+            const buttons = document.querySelectorAll('.btn');
+            
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.3)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                });
+                
+                button.addEventListener('mousedown', function() {
+                    this.style.transform = 'translateY(-1px)';
+                });
+                
+                button.addEventListener('mouseup', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+            });
+            
+            // Thêm tên vào lời chào
+            document.getElementById('greeting-name').textContent = userName;
+        });
+    </script>
+</body>
+</html>
