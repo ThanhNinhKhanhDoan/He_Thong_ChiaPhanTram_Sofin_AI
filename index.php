@@ -35,6 +35,13 @@ if ($DOMAIN === $_ENV['DOMAIN_ADMIN']) {
     $pathFileIndex = $pathFolder."/".get_route_to_file();
     $pathFileCss = $pathFolder."/".get_route_to_file_css();
     $pathFileJs = $pathFolder."/".get_route_to_file_js();
+} else if ($DOMAIN === $_ENV['TIER_5']) {
+    $pathFolder = $pathDirRoot."/website/tier_5";
+    $pathFileMain = $pathFolder."/main.php";
+    $pathFileRules = $pathFolder."/".get_route_to_file_rules();
+    $pathFileIndex = $pathFolder."/".get_route_to_file();
+    $pathFileCss = $pathFolder."/".get_route_to_file_css();
+    $pathFileJs = $pathFolder."/".get_route_to_file_js();
 } else {
     $pathFolder = $pathDirRoot."/website/public";
     $pathFileMain = $pathFolder."/main.php";

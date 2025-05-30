@@ -54,6 +54,9 @@ if (!$dataUsers) {
 
         <!-- https://kamranahmed.info/toast -->
         <link rel="stylesheet" href="<?= asset("/jquery-toast/src/jquery.toast.css") ?>">
+
+ 
+
         <!-- Stylesheets -->
         <?php
         if (file_exists($pathFileCss)) {
@@ -239,6 +242,37 @@ if (!$dataUsers) {
                                 </a>
                             </li>
 
+
+                            <li>
+                                <a href="<?=set_route_to_link(["public","test2","index"])?>">
+                                    <i class="fa-solid fa-book-open me-2"></i>
+                                    <span class="label">NTN Test2</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="<?=set_route_to_link(["public","test3","index"])?>">
+                                    <i class="fa-solid fa-book-open me-2"></i>
+                                    <span class="label">NTN Test3</span>
+                                </a>
+                            </li>
+
+
+                            <li>
+                                <a href="<?=set_route_to_link(["public","test4","index"])?>">
+                                    <i class="fa-solid fa-book-open me-2"></i>
+                                    <span class="label">NTN Test4</span>
+                                </a>
+                            </li>
+
+
+                            <li>
+                                <a href="<?=set_route_to_link(["public","test5","index"])?>">
+                                    <i class="fa-solid fa-book-open me-2"></i>
+                                    <span class="label">NTN Test5</span>
+                            
+                            
+                            
                             
 
                             
@@ -699,7 +733,7 @@ if (!$dataUsers) {
         <script src="<?= asset("/style/acom-all/js/common.js") ?>"></script>
         <script src="<?= asset("/style/acom-all/js/scripts.js") ?>"></script>
         <script src="<?= asset("/js-tdev/confirmAction.js") ?>"></script>
-        <script src="<?= asset("/js-tdev/hieu-ung-tham-gia.js") ?>"></script>
+        <!-- <script src="<?= asset("/js-tdev/hieu-ung-tham-gia.js") ?>"></script> -->
         <script>
         /**
          * hàm ví dụ về cách sử dụng confirmAction

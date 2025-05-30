@@ -5,7 +5,7 @@ class Mongodb_v2 {
     private $db;
     public function __construct($url) {
         $this->conn = new Client($url);
-        $this->db = $this->conn->sofinai;
+        $this->db = $this->conn->datas;
     }
 
     public function count($table, $wheres) {
@@ -57,6 +57,8 @@ class Mongodb_v2 {
 			return false;
 		}
     }
+
+	
     public function find($table, $wheres) {
         $table_db = $this->db->$table;
 		$result = $table_db->find(
