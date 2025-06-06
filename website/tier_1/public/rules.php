@@ -270,10 +270,31 @@ if (!$dataUsers) {
                                 <a href="<?=set_route_to_link(["public","test5","index"])?>">
                                     <i class="fa-solid fa-book-open me-2"></i>
                                     <span class="label">NTN Test5</span>
+                                </a>
+                            </li>
                             
                             
-                            
-                            
+                            <li>
+                                <a href="<?=set_route_to_link(["public","test6","index"])?>">
+                                    <i class="fa-solid fa-book-open me-2"></i>
+                                    <span class="label">NTN Test6</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="<?=set_route_to_link(["public","task_manager","index"])?>">
+                                    <i class="fa-solid fa-book-open me-2"></i>
+                                    <span class="label">Task Manager</span>
+                                </a>
+                            </li>
+
+
+                            <li>
+                                <a href="<?=set_route_to_link(["public","test7","index"])?>">
+                                    <i class="fa-solid fa-book-open me-2"></i>
+                                    <span class="label">NTN 7</span>
+                                </a>
+                            </li>
 
                             
                             
